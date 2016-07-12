@@ -25,5 +25,3 @@ def digit_sum_i(num)
   num.to_s.split('').map(&:to_i).reduce(&:+)
 end
 
-p digit_sum_r(0)
-p digit_sum_i(0)
