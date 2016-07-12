@@ -20,8 +20,44 @@ def digit_sum_r(num)
 end
 
 def digit_sum_i(num)
-  sum = 0
-  
   num.to_s.split('').map(&:to_i).reduce(&:+)
 end
 
+def palindrome_r(string)
+  case string.length
+  when 1
+    return true
+  when 2
+    string[0] == string[1] ? true : false
+  else
+    string[0] == string[-1] ? palindrome_r(string[1..-2]) : false
+  end
+end
+
+def palindrome_i(string)
+  until string.length < 3
+    if string[0] == string[-1]
+      string = string[1..-2]
+    else
+      return false
+    end
+  end
+  if string.length == 2
+    return false if string[0] != string[1]
+  end
+  true
+end
+
+puts "Recursive: "
+puts palindrome_r("aacbcaa")
+puts palindrome_r("abcdef")
+puts palindrome_r("aacbbcaa")
+puts palindrome_r("aacbccaa")
+
+puts ""
+
+puts "Iterative: "
+puts palindrome_i("aacbcaa")
+puts palindrome_i("abcdef")
+puts palindrome_i("aacbbcaa")
+puts palindrome_i("aacbccaa")
